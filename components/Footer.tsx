@@ -1,7 +1,12 @@
+'use client';
+
 import { FaSpotify, FaYoutube, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="relative w-full bg-black border-t border-white/10">
       <div className="flex flex-col md:flex-row items-center justify-between px-6 md:px-12 py-8">
@@ -10,7 +15,7 @@ export default function Footer() {
 
         {/* Center - Copyright */}
         <div className="text-white/60 text-sm tracking-wide mb-6 md:mb-0">
-          VARESE 2025
+          {t.footer.copyright}
         </div>
 
         {/* Right - Social Media Icons */}

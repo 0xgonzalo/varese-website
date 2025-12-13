@@ -1,4 +1,10 @@
+'use client';
+
+import { useLanguage } from '@/contexts/LanguageContext';
+
 export default function LiveSet() {
+  const { t } = useLanguage();
+
   return (
     <div id="liveset" className="relative w-full">
       {/* Background Image */}
@@ -13,11 +19,11 @@ export default function LiveSet() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center px-4 md:px-8 py-12 md:py-20">
         <h2 className="mb-6 text-4xl md:text-5xl font-bold tracking-wider text-white">
-          LIVE SET
+          {t.liveSet.title}
         </h2>
 
         <p className="mb-12 max-w-4xl text-center text-base md:text-lg tracking-wide text-white/80 px-4">
-          Live Set de nuestro show grabado en Niceto Club en Buenos Aires durante 2025
+          {t.liveSet.description}
         </p>
 
         <div className="w-full max-w-4xl px-4">

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const tourDates = [
   {
@@ -10,6 +11,7 @@ const tourDates = [
     date: "31",
     month: "DIC",
     day: "LUN",
+    link: "https://venti.com.ar/evento/a-o-nuevo-varese-folgar"
   },
   {
     venue: "CLUB TRI",
@@ -17,11 +19,13 @@ const tourDates = [
     date: "02",
     month: "ENE",
     day: "MIE",
+    link: "https://articket.com.ar/VARESE-PRESENTA-TREGUA-EN-CLUB-TRI/"
   },
 ];
 
 export default function Tour() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { t } = useLanguage();
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % tourDates.length);
@@ -38,7 +42,7 @@ export default function Tour() {
         {/* Tour Title */}
         <div className="mb-6 md:mb-16 flex items-center justify-center gap-4">
           <h2 className="text-4xl md:text-6xl font-bold tracking-wider text-white">
-            TOUR
+            {t.tour.title}
           </h2>
         </div>
 
@@ -101,10 +105,11 @@ export default function Tour() {
 
                     {/* Buy Tickets Button */}
                     <a
-                      href="#"
+                      href={show.link}
                       className="inline-block border-2 border-white px-6 md:px-8 py-2.5 md:py-3 text-xs md:text-sm font-semibold tracking-widest text-white transition-all duration-300 hover:bg-white hover:text-black"
+                      target="_blank" rel="noopener noreferrer"
                     >
-                      COMPRAR ENTRADAS
+                      {t.tour.buyTickets}
                     </a>
                   </div>
                 </div>

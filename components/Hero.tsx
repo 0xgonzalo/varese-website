@@ -2,6 +2,7 @@
 
 import { FaSpotify, FaYoutube, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
+import { useLanguage } from '@/contexts/LanguageContext';
 import Navbar from './Navbar';
 
 interface HeroProps {
@@ -10,6 +11,8 @@ interface HeroProps {
 }
 
 export default function Hero({ mobileMenuOpen, setMobileMenuOpen }: HeroProps) {
+  const { t } = useLanguage();
+
   return (
     <div id="home" className="relative min-h-screen w-full overflow-hidden">
       {/* Background Image - Desktop */}
@@ -43,7 +46,7 @@ export default function Hero({ mobileMenuOpen, setMobileMenuOpen }: HeroProps) {
             rel="noopener noreferrer"
             className="group relative overflow-hidden border-2 border-white px-12 py-4 text-sm font-semibold tracking-widest text-white transition-all duration-300 hover:scale-105 inline-block"
           >
-            <span className="relative z-10">ESCUCHAR TREGUA</span>
+            <span className="relative z-10">{t.hero.listenButton}</span>
             <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10" />
           </a>
         </div>

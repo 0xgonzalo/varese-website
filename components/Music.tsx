@@ -1,4 +1,10 @@
+'use client';
+
+import { useLanguage } from '@/contexts/LanguageContext';
+
 export default function Music() {
+  const { t } = useLanguage();
+
   return (
     <div id="musica" className="relative min-h-screen w-full">
       {/* Background Image */}
@@ -13,7 +19,7 @@ export default function Music() {
       {/* Content */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 md:px-8 py-20">
         <h2 className="mb-12 text-4xl md:text-5xl font-bold tracking-wider text-white">
-          MÚSICA
+          {t.music.title}
         </h2>
 
         <div className="rounded-lg bg-black/30 p-3 md:p-4 backdrop-blur-sm w-full max-w-sm">
