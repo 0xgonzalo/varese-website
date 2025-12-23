@@ -14,11 +14,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Varese | Electronic Music Artist & Producer",
+    default: "Varese | Electronic Music Duo",
     template: "%s | Varese",
   },
   description:
-    "Varese is an electronic music artist and producer. Explore music, tour dates, live sets, and more. Listen on Spotify, YouTube Music, and all streaming platforms.",
+    "Varese is an electronic music duo. Explore music, tour dates, live sets, and more. Listen on Spotify, YouTube Music, and all streaming platforms.",
   keywords: [
     "Varese",
     "Varese music",
@@ -26,7 +26,8 @@ export const metadata: Metadata = {
     "Varese artist",
     "Varese producer",
     "electronic music",
-    "electronic artist",
+    "electronic duo",
+    "electronic artists",
     "music producer",
     "DJ",
     "live set",
@@ -49,23 +50,23 @@ export const metadata: Metadata = {
     alternateLocale: "es_ES",
     url: "https://varesemusica.com",
     siteName: "Varese",
-    title: "Varese | Electronic Music Artist & Producer",
+    title: "Varese | Electronic Music Duo",
     description:
-      "Varese is an electronic music artist and producer. Explore music, tour dates, live sets, and more.",
+      "Varese is an electronic music duo and producers. Explore music, tour dates, live sets, and more.",
     images: [
       {
         url: "/bg-hero.jpg",
         width: 1200,
         height: 630,
-        alt: "Varese - Electronic Music Artist",
+        alt: "Varese - Electronic Music Duo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Varese | Electronic Music Artist & Producer",
-    description:
-      "Varese is an electronic music artist and producer. Explore music, tour dates, live sets, and more.",
+    title: "Varese | Electronic Music Duo",
+    description:  
+      "Varese is an electronic music duo and producers. Explore music, tour dates, live sets, and more.",
     site: "@varesemusica",
     creator: "@varesemusica",
     images: ["/bg-hero.jpg"],
