@@ -102,7 +102,7 @@ const jsonLd = {
       name: "Varese",
       alternateName: ["Varese Music", "Varese Musica"],
       description:
-        "Varese is an electronic music artist and producer known for creating immersive soundscapes and energetic live performances.",
+        "Varese is an electronic music duo and producers known for creating immersive soundscapes and energetic live performances.",
       image: {
         "@type": "ImageObject",
         url: "https://varesemusica.com/bg-hero.jpg",
@@ -123,7 +123,7 @@ const jsonLd = {
       "@id": "https://varesemusica.com/#website",
       url: "https://varesemusica.com",
       name: "Varese",
-      description: "Official website of Varese - Electronic Music Artist",
+      description: "Official website of Varese - Electronic Music Duo",
       publisher: {
         "@id": "https://varesemusica.com/#musicgroup",
       },
@@ -133,7 +133,7 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": "https://varesemusica.com/#webpage",
       url: "https://varesemusica.com",
-      name: "Varese | Electronic Music Artist & Producer",
+      name: "Varese | Electronic Music Duo",
       isPartOf: {
         "@id": "https://varesemusica.com/#website",
       },
