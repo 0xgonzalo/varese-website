@@ -6,20 +6,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const tourDates = [
   {
-    venue: "DUNEPARK",
+    venue: "ART MEDIA",
     city: "BUENOS AIRES",
-    date: "31",
-    month: "DIC",
-    day: "LUN",
-    link: "https://venti.com.ar/evento/a-o-nuevo-varese-folgar"
-  },
-  {
-    venue: "CLUB TRI",
-    city: "MAR DEL PLATA",
-    date: "02",
-    month: "ENE",
-    day: "MIE",
-    link: "https://articket.com.ar/VARESE-PRESENTA-TREGUA-EN-CLUB-TRI/"
+    date: "20",
+    month: "FEB",
+    day: "VIE",
+    link: "https://www.passline.com/eventos/la-previa-del-festival-buena-vibra"
   },
 ];
 
