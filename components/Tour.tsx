@@ -6,12 +6,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const tourDates = [
   {
-    venue: "ART MEDIA",
+    venue: "CLUB AMERIKA W/ DEBORAH DE LUCA",
     city: "BUENOS AIRES",
-    date: "20",
-    month: "FEB",
-    day: "VIE",
-    link: "https://www.passline.com/eventos/la-previa-del-festival-buena-vibra"
+    date: "08",
+    month: "JUL",
+    day: "MIE",
+    link: "https://planout.ar/eventos/es/entradas-musica-deborah-de-luca-en-amerika-club"
   },
 ];
 
