@@ -85,7 +85,7 @@ export default function PresaveHero({ mobileMenuOpen, setMobileMenuOpen }: Presa
             {/* Left column - Form */}
             <div className="order-2 md:order-1">
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-wide text-white mb-6 md:mb-8">
-                Completa el presave del remix y accedé al evento
+                Hacé el presave y sumate a la listening party de CABA, Mar del Plata o La Plata
               </h1>
 
               {status === 'success' ? (

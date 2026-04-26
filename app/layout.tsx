@@ -56,7 +56,7 @@ export const metadata: Metadata = {
       "Varese is an electronic music duo and producers. Explore music, tour dates, live sets, and more.",
     images: [
       {
-        url: "/bg-hero.jpg",
+        url: "/og/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Varese - Electronic Music Duo",
@@ -66,11 +66,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Varese | Electronic Music Duo",
-    description:  
+    description:
       "Varese is an electronic music duo and producers. Explore music, tour dates, live sets, and more.",
     site: "@varesemusica",
     creator: "@varesemusica",
-    images: ["/bg-hero.jpg"],
+    images: ["/og/og-image.jpg"],
   },
   robots: {
     index: true,
