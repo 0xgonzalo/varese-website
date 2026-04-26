@@ -17,7 +17,11 @@
       "mcp__plugin_supabase_supabase__list_tables",
       "mcp__plugin_supabase_supabase__get_advisors",
       "mcp__plugin_supabase_supabase__execute_sql",
-      "mcp__plugin_supabase_supabase__list_migrations"
+      "mcp__plugin_supabase_supabase__list_migrations",
+      "Bash(node scripts/generate-og-image.mjs)",
+      "Bash(node -e ' *)",
+      "Bash(cp \"C:/Users/Gonzalo/Downloads/Telegram Desktop/photo_2026-04-26_15-09-15.jpg\" public/og/og-source.jpg)",
+      "Bash(npm run *)"
     ]
   }
 }
