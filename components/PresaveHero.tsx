@@ -160,7 +160,7 @@ export default function PresaveHero({ mobileMenuOpen, setMobileMenuOpen }: Presa
                       onChange={(e) => setPresaveCompleted(e.target.checked)}
                       className="mt-1 h-4 w-4 accent-white cursor-pointer"
                     />
-                    <span>Completé el presave de Tregua Remixes</span>
+                    <span>Completé el presave de TREGUA Remixes</span>
                   </label>
 
                   <button
@@ -201,12 +201,12 @@ export default function PresaveHero({ mobileMenuOpen, setMobileMenuOpen }: Presa
                 TREGUA REMIXES
               </h2>
               <p className="mt-2 text-sm md:text-base text-white/80 tracking-wide">
-                Eventos de Presentación del álbum
+                Eventos de presentación del álbum
               </p>
 
               <div className="mt-8 md:mt-10 flex flex-col items-center gap-4">
                 <p className="text-sm md:text-base text-white/90">
-                  Hacé el presave de Tregua y accedé al evento
+                  Hacé el presave de TREGUA REMIXES y accedé al evento
                 </p>
                 <a
                   href={PRESAVE_URL}
