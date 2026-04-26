@@ -3,14 +3,8 @@
 import { FaSpotify, FaYoutube, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
 import { useLanguage } from '@/contexts/LanguageContext';
-import Navbar from './Navbar';
 
-interface HeroProps {
-  mobileMenuOpen: boolean;
-  setMobileMenuOpen: (open: boolean) => void;
-}
-
-export default function Hero({ mobileMenuOpen, setMobileMenuOpen }: HeroProps) {
+export default function Hero() {
   const { t } = useLanguage();
 
   return (
@@ -35,9 +29,6 @@ export default function Hero({ mobileMenuOpen, setMobileMenuOpen }: HeroProps) {
 
       {/* Content Container */}
       <div className="relative z-10 flex min-h-screen flex-col">
-        {/* Navbar */}
-        <Navbar mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
-
         {/* Main Content - Center Button */}
         <div className="flex flex-1 items-center justify-center">
           <a

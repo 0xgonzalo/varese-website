@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import PresaveHero from '@/components/PresaveHero';
 import Hero from '@/components/Hero';
 import Music from '@/components/Music';
 import Tour from '@/components/Tour';
@@ -14,7 +15,8 @@ export default function Home() {
   return (
     <LanguageProvider>
       <div className="relative w-full">
-        <Hero mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+        <PresaveHero mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+        <Hero />
         <Music />
         <Tour />
         <LiveSet />
