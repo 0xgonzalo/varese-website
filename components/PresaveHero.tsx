@@ -24,7 +24,6 @@ export default function PresaveHero({ mobileMenuOpen, setMobileMenuOpen }: Presa
   const [lastName, setLastName] = useState('');
   const [event, setEvent] = useState<number | ''>('');
   const [email, setEmail] = useState('');
-  const [presaveCompleted, setPresaveCompleted] = useState(false);
   const [status, setStatus] = useState<Status>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -46,7 +45,7 @@ export default function PresaveHero({ mobileMenuOpen, setMobileMenuOpen }: Presa
           last_name: lastName,
           event,
           email,
-          presave_completed: presaveCompleted,
+          presave_completed: true,
         }),
       });
       const json = await res.json();
@@ -56,7 +55,6 @@ export default function PresaveHero({ mobileMenuOpen, setMobileMenuOpen }: Presa
       setLastName('');
       setEvent('');
       setEmail('');
-      setPresaveCompleted(false);
     } catch (err) {
       setStatus('error');
       setErrorMsg(err instanceof Error ? err.message : 'Error al enviar');
@@ -151,17 +149,6 @@ export default function PresaveHero({ mobileMenuOpen, setMobileMenuOpen }: Presa
                       className="w-full bg-transparent border border-white/40 px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-white transition-colors"
                     />
                   </div>
-
-                  <label className="flex items-start gap-3 text-sm text-white/90 cursor-pointer select-none">
-                    <input
-                      type="checkbox"
-                      required
-                      checked={presaveCompleted}
-                      onChange={(e) => setPresaveCompleted(e.target.checked)}
-                      className="mt-1 h-4 w-4 accent-white cursor-pointer"
-                    />
-                    <span>Completé el presave de TREGUA Remixes</span>
-                  </label>
 
                   <button
                     type="submit"
