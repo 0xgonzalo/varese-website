@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+// import { useState } from 'react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
-import PresaveHero from '@/components/PresaveHero';
+// import PresaveHero from '@/components/PresaveHero';
 import Hero from '@/components/Hero';
 import Music from '@/components/Music';
 import Tour from '@/components/Tour';
@@ -10,12 +10,12 @@ import LiveSet from '@/components/LiveSet';
 import Footer from '@/components/Footer';
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <LanguageProvider>
       <div className="relative w-full">
-        <PresaveHero mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+        {/* <PresaveHero mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} /> */}
         <Hero />
         <Music />
         <Tour />

@@ -6,6 +6,14 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const tourDates = [
   {
+    venue: "VARESE 360º @ U HOUSE",
+    city: "BUENOS AIRES",
+    date: "06",
+    month: "JUN",
+    day: "SAB",
+    link: "https://venti.com.ar/evento/varese-360-u-house"
+  },
+  {
     venue: "CLUB AMERIKA W/ DEBORAH DE LUCA",
     city: "BUENOS AIRES",
     date: "08",
