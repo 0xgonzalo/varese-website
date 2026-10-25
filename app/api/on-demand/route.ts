@@ -32,7 +32,8 @@ export async function POST(req: Request) {
   const { error } = await supabase.from('on_demand_votes').insert(rows);
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error('on_demand_votes insert failed', error);
+    return NextResponse.json({ error: 'Internal error' }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true });
