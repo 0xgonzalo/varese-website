@@ -2,10 +2,11 @@
 
 import { FaSpotify, FaYoutube, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
-import { useLanguage } from '@/contexts/LanguageContext';
+// import { useLanguage } from '@/contexts/LanguageContext';
+import OnDemandVote from './OnDemandVote';
 
 export default function Hero() {
-  const { t } = useLanguage();
+  // const { t } = useLanguage();
 
   return (
     <div id="home" className="relative min-h-screen w-full overflow-hidden">
@@ -29,7 +30,12 @@ export default function Hero() {
 
       {/* Content Container */}
       <div className="relative z-10 flex min-h-screen flex-col">
-        {/* Main Content - Center Button */}
+        {/* Main Content - Varese On Demand (temporal) */}
+        <div className="flex flex-1 items-center justify-center pt-8 md:pt-16">
+          <OnDemandVote />
+        </div>
+
+        {/* Main Content - Center Button (restaurar después del 04.11)
         <div className="flex flex-1 items-center justify-center">
           <a
             href="https://open.spotify.com/album/524yA9fiXxSeDBMfqgpP23?si=9lJeAXZxQGukM00Fnz40xA"
@@ -41,6 +47,7 @@ export default function Hero() {
             <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10" />
           </a>
         </div>
+        */}
 
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8 px-6 md:px-12 pb-12">
