@@ -106,8 +106,8 @@ export default function OnDemandVote() {
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold italic uppercase tracking-wider text-white">
           Varese On Demand
         </h1>
-        <p className="mt-4 text-sm md:text-base tracking-wide text-white/80">
-          Elegí los tracks que querés escuchar el <span className="font-semibold text-white">04.11</span>
+        <p className="mt-4 text-sm md:text-base font-bold uppercase tracking-widest text-white/90">
+          Elegí los tracks que querés escuchar el <span className="text-white">04.11</span>
         </p>
       </div>
 
