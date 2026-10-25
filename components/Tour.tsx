@@ -21,6 +21,30 @@ const tourDates = [
     day: "MIE",
     link: "https://planout.ar/eventos/es/entradas-musica-deborah-de-luca-en-amerika-club"
   },
+  {
+    venue: "MR JONES W/ JUAN HANSEN",
+    city: "MAR DEL PLATA",
+    date: "14",
+    month: "NOV",
+    day: "SAB",
+    link: "https://wearebombo.com/evento/v-aniversario-hansen-varese-the-county-music-6ace52810d9e9cad1c632ac0"
+  },
+  {
+    venue: "MANDARINE PARK W/ UNDERCLUB",
+    city: "BUENOS AIRES",
+    date: "26",
+    month: "NOV",
+    day: "JUE",
+    link: "https://venti.live/evento/underworld-mandarine-park"
+  },
+  {
+    venue: "LOLLAPALOOZA ARGENTINA",
+    city: "BUENOS AIRES",
+    date: "12–14",
+    month: "MAR",
+    day: "VIE–DOM",
+    link: "https://www.allaccess.com.ar/event/lollapalooza-2027"
+  },
 ];
 
 export default function Tour() {
