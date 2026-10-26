@@ -2,11 +2,10 @@
 
 import { useEffect, useMemo, useRef, useState, KeyboardEvent } from 'react';
 import { createPortal } from 'react-dom';
-import { FaSpotify } from 'react-icons/fa';
-import { HiX, HiSearch } from 'react-icons/hi';
+import { HiX, HiSearch, HiTicket } from 'react-icons/hi';
 import { ON_DEMAND_TRACKS, MAX_TRACKS_PER_VOTE, normalize } from '@/lib/onDemandTracks';
 
-const SPOTIFY_URL = 'https://open.spotify.com/artist/5DG278QHnEKfWW9zAGFeRg?si=PxwnmW0ORjaReWaljoVJqg';
+const TICKETS_URL = 'http://www.alternativateatral.com/obra103574-septimo-noche-3';
 const MAX_SUGGESTIONS = 8;
 
 type Status = 'idle' | 'submitting' | 'error';
@@ -243,15 +242,14 @@ export default function OnDemandVote() {
             <p className="mt-3 text-sm text-white/80">
               Recibimos tus votos. Nos vemos el 04.11.
             </p>
-            <p className="mt-6 text-sm text-white/60">Mientras tanto, seguí escuchando nuestra música</p>
             <a
-              href={SPOTIFY_URL}
+              href={TICKETS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative mt-4 inline-flex w-full items-center justify-center gap-3 overflow-hidden border-2 border-white px-8 py-3 text-sm font-semibold tracking-widest text-white transition-all duration-300 hover:scale-[1.02]"
+              className="group relative mt-6 inline-flex w-full items-center justify-center gap-3 overflow-hidden border-2 border-white px-8 py-3 text-sm font-semibold tracking-widest text-white transition-all duration-300 hover:scale-[1.02]"
             >
-              <FaSpotify size={18} className="relative z-10" />
-              <span className="relative z-10">IR A SPOTIFY</span>
+              <HiTicket size={18} className="relative z-10" />
+              <span className="relative z-10">LINK A LAS ENTRADAS</span>
               <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10" />
             </a>
           </div>
