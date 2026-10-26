@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import { HiX, HiSearch, HiTicket } from 'react-icons/hi';
 import { ON_DEMAND_TRACKS, MAX_TRACKS_PER_VOTE, normalize } from '@/lib/onDemandTracks';
 
-const TICKETS_URL = 'http://www.alternativateatral.com/obra103574-septimo-noche-3';
+const TICKETS_URL = 'https://www.alternativateatral.com/obra103574-septimo-noche-3';
 const MAX_SUGGESTIONS = 8;
 
 type Status = 'idle' | 'submitting' | 'error';
