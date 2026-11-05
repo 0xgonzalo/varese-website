@@ -4,7 +4,7 @@ import { ADMIN_COOKIE, checkAdminPassword, createSessionToken } from '@/lib/tick
 export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
-  if (!process.env.ADMIN_PASSWORD) {
+  if (!process.env.ADMIN_PASSWORD || !process.env.ADMIN_SESSION_SECRET) {
     return NextResponse.json({ error: 'Server not configured' }, { status: 500 });
   }
 

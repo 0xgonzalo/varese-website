@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 export const ADMIN_COOKIE = 'varese_admin';
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7;
 
-// --- Admin session: "<expiresAt>.<hmac>" signed with ADMIN_PASSWORD (changing it logs everyone out)
+// --- Admin session: "<expiresAt>.<hmac>" signed with ADMIN_SESSION_SECRET (rotating it logs everyone out)
 
 function sign(payload: string, secret: string) {
   return createHmac('sha256', secret).update(`varese-admin:${payload}`).digest('hex');
@@ -22,14 +22,14 @@ export function checkAdminPassword(input: string) {
 }
 
 export function createSessionToken() {
-  const secret = process.env.ADMIN_PASSWORD;
-  if (!secret) throw new Error('ADMIN_PASSWORD not set');
+  const secret = process.env.ADMIN_SESSION_SECRET;
+  if (!secret) throw new Error('ADMIN_SESSION_SECRET not set');
   const expiresAt = String(Math.floor(Date.now() / 1000) + SESSION_TTL_SECONDS);
   return { token: `${expiresAt}.${sign(expiresAt, secret)}`, maxAge: SESSION_TTL_SECONDS };
 }
 
 export function isValidSessionToken(token: string | undefined) {
-  const secret = process.env.ADMIN_PASSWORD;
+  const secret = process.env.ADMIN_SESSION_SECRET;
   if (!secret || !token) return false;
   const [expiresAt, mac] = token.split('.');
   if (!expiresAt || !mac || Number(expiresAt) < Date.now() / 1000) return false;
