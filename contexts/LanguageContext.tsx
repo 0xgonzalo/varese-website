@@ -55,7 +55,7 @@ const translations: Record<Language, Translations> = {
       description: 'Live Set de nuestro show grabado en Niceto Club en Buenos Aires durante 2025',
     },
     footer: {
-      copyright: 'VARESE 2025',
+      copyright: 'VARESE 2027',
     },
   },
   en: {
@@ -81,7 +81,7 @@ const translations: Record<Language, Translations> = {
       description: 'Live Set from our show recorded at Niceto Club in Buenos Aires during 2025',
     },
     footer: {
-      copyright: 'VARESE 2025',
+      copyright: 'VARESE 2027',
     },
   },
 };

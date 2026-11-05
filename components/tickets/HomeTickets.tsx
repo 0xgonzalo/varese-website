@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import TicketCard from '@/components/tickets/TicketCard';
 import type { TicketEvent } from '@/lib/tickets';
@@ -20,12 +19,7 @@ export default function HomeTickets({ events }: { events: TicketEvent[] }) {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-lg px-5 py-12 md:max-w-6xl md:px-8 md:py-16">
-        <div className="mb-6 flex items-baseline justify-between gap-4 md:mb-10">
-          <h2 className="text-3xl md:text-5xl font-bold italic tracking-wider text-white">TICKETS</h2>
-          <Link href="/tickets" className="text-[11px] md:text-xs font-semibold tracking-widest text-white/60 transition-colors hover:text-white">
-            VER TODAS
-          </Link>
-        </div>
+        <h2 className="mb-6 text-3xl md:mb-10 md:text-5xl font-bold italic tracking-wider text-white">TICKETS</h2>
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {events.map((event) => (
             <li key={event.id}>
