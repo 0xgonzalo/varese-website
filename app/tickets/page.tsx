@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { FaSpotify, FaYoutube, FaInstagram, FaTiktok } from 'react-icons/fa';
-import { HiArrowRight } from 'react-icons/hi';
-import { formatEventDate, todayInBuenosAires, type TicketEvent } from '@/lib/tickets';
-import { isStoreConfigured, readEvents } from '@/lib/ticketsStore';
+import { getUpcomingEvents } from '@/lib/ticketsStore';
+import TicketCard from '@/components/tickets/TicketCard';
 
 export const revalidate = 300;
 
@@ -26,13 +24,6 @@ const SOCIALS = [
   { href: 'https://www.instagram.com/varesemusica/', label: 'Instagram', Icon: FaInstagram },
   { href: 'https://www.tiktok.com/@varesemusica', label: 'TikTok', Icon: FaTiktok },
 ];
-
-async function getUpcomingEvents(): Promise<TicketEvent[]> {
-  if (!isStoreConfigured()) return [];
-  const today = todayInBuenosAires();
-  const events = await readEvents();
-  return events.filter((e) => e.event_date >= today).sort((a, b) => a.event_date.localeCompare(b.event_date));
-}
 
 export default async function TicketsPage() {
   const events = await getUpcomingEvents();
@@ -68,55 +59,11 @@ export default async function TicketsPage() {
           </div>
         ) : (
           <ul className="flex flex-col gap-4">
-            {events.map((event) => {
-              const { date, month, day } = formatEventDate(event.event_date);
-              return (
-                <li key={event.id}>
-                  <a
-                    href={event.ticket_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-stretch gap-4 border-2 border-white/20 bg-gradient-to-b from-white/5 to-black/40 p-3 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-white/60"
-                  >
-                    {event.flyer_url ? (
-                      <div className="relative w-24 md:w-28 flex-shrink-0 self-start aspect-[4/5] overflow-hidden bg-white/5">
-                        <Image
-                          src={event.flyer_url}
-                          alt={`Flyer ${event.title}`}
-                          fill
-                          sizes="112px"
-                          className="object-cover"
-                        />
-                      </div>
-                    ) : (
-                      <div className="flex w-24 md:w-28 flex-shrink-0 self-start aspect-[4/5] items-center justify-center border border-white/10 bg-white/5">
-                        <span className="text-sm font-bold italic tracking-wider text-white/40">VARESE</span>
-                      </div>
-                    )}
-
-                    <div className="flex min-w-0 flex-1 flex-col justify-between py-1">
-                      <div>
-                        <div className="flex items-baseline gap-2">
-                          <span className="text-3xl md:text-4xl font-bold italic leading-none text-white">{date}</span>
-                          <span className="text-base md:text-lg font-bold text-white">{month}</span>
-                          <span className="text-xs text-white/60">{day}</span>
-                        </div>
-                        <h2 className="mt-2 text-base md:text-lg font-bold uppercase leading-tight tracking-wider text-white break-words">
-                          {event.title}
-                        </h2>
-                        <p className="mt-1 text-xs md:text-sm uppercase tracking-wide text-white/60 break-words">
-                          {event.venue}
-                        </p>
-                      </div>
-                      <span className="mt-3 inline-flex items-center gap-2 self-start border-2 border-white px-4 py-1.5 text-[11px] md:text-xs font-semibold tracking-widest text-white transition-colors duration-300 group-hover:bg-white group-hover:text-black">
-                        ENTRADAS
-                        <HiArrowRight size={14} />
-                      </span>
-                    </div>
-                  </a>
-                </li>
-              );
-            })}
+            {events.map((event) => (
+              <li key={event.id}>
+                <TicketCard event={event} />
+              </li>
+            ))}
           </ul>
         )}
 

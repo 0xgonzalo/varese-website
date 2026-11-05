@@ -1,5 +1,5 @@
 import { del, list, put } from '@vercel/blob';
-import type { TicketEvent } from '@/lib/tickets';
+import { todayInBuenosAires, type TicketEvent } from '@/lib/tickets';
 
 // All dates live in one JSON file in Vercel Blob; flyers are separate blobs under flyers/.
 // The public Blob CDN ignores query strings and caches by pathname (including 404s for deleted
@@ -52,6 +52,21 @@ async function readLatest(): Promise<{ events: TicketEvent[]; version: number; v
 
 export async function readEvents(): Promise<TicketEvent[]> {
   return (await readLatest()).events;
+}
+
+// Public pages: upcoming dates only (Buenos Aires day), soonest first. Never throws so a Blob
+// hiccup can't take the home page down.
+export async function getUpcomingEvents(): Promise<TicketEvent[]> {
+  if (!isStoreConfigured()) return [];
+  try {
+    const today = todayInBuenosAires();
+    return (await readEvents())
+      .filter((e) => e.event_date >= today)
+      .sort((a, b) => a.event_date.localeCompare(b.event_date));
+  } catch (err) {
+    console.error('tickets read failed', err);
+    return [];
+  }
 }
 
 export async function mutateEvents<R>(fn: (events: TicketEvent[]) => { events: TicketEvent[]; result: R }): Promise<R> {

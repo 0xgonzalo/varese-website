@@ -51,6 +51,7 @@ export async function PATCH(req: Request, { params }: Ctx) {
   if (result.oldFlyer !== result.event.flyer_url) await deleteFlyer(result.oldFlyer);
 
   revalidatePath('/tickets');
+  revalidatePath('/');
   return NextResponse.json({ event: result.event });
 }
 
@@ -75,5 +76,6 @@ export async function DELETE(_req: Request, { params }: Ctx) {
   await deleteFlyer(removed.flyer_url);
 
   revalidatePath('/tickets');
+  revalidatePath('/');
   return NextResponse.json({ ok: true });
 }

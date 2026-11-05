@@ -30,5 +30,6 @@ export async function POST(req: Request) {
   }
 
   revalidatePath('/tickets');
+  revalidatePath('/');
   return NextResponse.json({ event });
 }
