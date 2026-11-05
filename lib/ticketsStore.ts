@@ -1,23 +1,28 @@
-import { BlobError, del, list, put } from '@vercel/blob';
+import { del, list, put } from '@vercel/blob';
 import type { TicketEvent } from '@/lib/tickets';
 
 // All dates live in one JSON file in Vercel Blob; flyers are separate blobs under flyers/.
-// The public Blob CDN ignores query strings and can serve an overwritten file for up to a minute,
-// so the JSON is never overwritten: each save writes data/tickets-v<n+1>.json and readers pick the
-// highest version via list() (API, always fresh). allowOverwrite:false makes concurrent saves of the
-// same version collide, so the loser re-reads and retries instead of dropping an edit.
+// The public Blob CDN ignores query strings and caches by pathname (including 404s for deleted
+// blobs), so the JSON is never overwritten and no pathname is ever reused: each save writes
+// data/tickets-v<n+1>-<random>.json and readers pick the highest version via list() (API, always
+// fresh). If two saves race to the same n, the one with the smallest suffix wins and the other
+// retries on top of it (two saves within the same second can still lose one edit; fine for one admin).
 const VERSION_PREFIX = 'data/tickets-v';
 const FLYER_PREFIX = 'flyers/';
 const KEEP_VERSIONS = 5;
 const MAX_ATTEMPTS = 4;
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const randomSuffix = () => crypto.randomUUID().replace(/-/g, '').slice(0, 12);
 
 export function isStoreConfigured() {
   return !!process.env.BLOB_READ_WRITE_TOKEN;
 }
 
-type Version = { n: number; url: string };
+type Version = { n: number; suffix: string; url: string };
+
+// Legacy files (data/tickets-v3.json) have no suffix and win ties
+const VERSION_RE = /^data\/tickets-v(\d+)(?:-([a-z0-9]+))?\.json$/;
 
 async function listVersions(): Promise<Version[]> {
   const versions: Version[] = [];
@@ -25,19 +30,19 @@ async function listVersions(): Promise<Version[]> {
   do {
     const page = await list({ prefix: VERSION_PREFIX, cursor });
     for (const b of page.blobs) {
-      const n = Number(b.pathname.slice(VERSION_PREFIX.length).replace(/\.json$/, ''));
-      if (Number.isInteger(n)) versions.push({ n, url: b.url });
+      const m = VERSION_RE.exec(b.pathname);
+      if (m) versions.push({ n: Number(m[1]), suffix: m[2] ?? '', url: b.url });
     }
     cursor = page.hasMore ? page.cursor : undefined;
   } while (cursor);
-  return versions.sort((a, b) => b.n - a.n);
+  return versions.sort((a, b) => b.n - a.n || a.suffix.localeCompare(b.suffix));
 }
 
 async function readLatest(): Promise<{ events: TicketEvent[]; version: number; versions: Version[] }> {
   const versions = await listVersions();
   const latest = versions[0];
   if (!latest) return { events: [], version: 0, versions };
-  // Version files are immutable, so caching their body is always safe
+  // Version pathnames are unique and never overwritten, so caching their body is always safe
   const res = await fetch(latest.url, { cache: 'force-cache' });
   if (!res.ok) throw new Error(`tickets read failed: ${res.status}`);
   const parsed = await res.json();
@@ -54,16 +59,17 @@ export async function mutateEvents<R>(fn: (events: TicketEvent[]) => { events: T
     if (attempt > 0) await sleep(150 * attempt);
     const { events, version, versions } = await readLatest();
     const next = fn(events);
-    try {
-      await put(`${VERSION_PREFIX}${version + 1}.json`, JSON.stringify(next.events), {
-        access: 'public',
-        contentType: 'application/json',
-        addRandomSuffix: false,
-        allowOverwrite: false,
-      });
-    } catch (err) {
-      if (err instanceof BlobError && /already exists/i.test(err.message)) continue;
-      throw err;
+    const n = version + 1;
+    const mine = await put(`${VERSION_PREFIX}${n}-${randomSuffix()}.json`, JSON.stringify(next.events), {
+      access: 'public',
+      contentType: 'application/json',
+      addRandomSuffix: false,
+      allowOverwrite: false,
+    });
+    const winner = (await listVersions()).find((v) => v.n === n);
+    if (winner && winner.url !== mine.url) {
+      await del(mine.url).catch((err) => console.error('tickets losing version delete failed', err));
+      continue;
     }
     // Prune old versions (the new one plus the most recent previous ones stay)
     const stale = versions.slice(KEEP_VERSIONS - 1).map((v) => v.url);
